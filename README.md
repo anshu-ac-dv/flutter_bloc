@@ -20,7 +20,9 @@ Track the evolution of this project as I dive deeper into the Flutter ecosystem.
   - [x] Integrating **Equatable** for value-based equality.
   - [x] Optimizing performance by reducing unnecessary rebuilds.
   - [x] Clean debugging with `debugPrint`.
-- [ ] **Phase 3: The BLoC Pattern** (Coming Soon 🚧)
+- [ ] **Phase 3: The BLoC Pattern** 🏗️
+  - [x] Successfully integrated `flutter_bloc` & `bloc` dependencies.
+  - [x] Resolved project naming conflicts (Renamed to `bloc_learning`).
   - [ ] Implementing `Bloc` and `Cubit`.
   - [ ] State vs. Events architecture.
   - [ ] Using `BlocProvider` and `BlocBuilder`.
@@ -36,6 +38,14 @@ Track the evolution of this project as I dive deeper into the Flutter ecosystem.
 - **Value Equality**: Utilizes `Equatable` to compare objects by value rather than reference, perfect for state comparison.
 - **Clean UI**: A polished Material 3 interface.
 - **Robust Testing**: Includes smoke tests to ensure counter logic remains intact.
+
+---
+
+## 🧠 Lessons Learned
+
+- **Dependency Naming**: Avoid naming your Flutter project the same as a package you intend to use (e.g., naming a project `flutter_bloc` while using the `flutter_bloc` package). This causes import conflicts and build failures.
+- **Equatable for State**: Always use `Equatable` in BLoC states to prevent unnecessary UI rebuilds by ensuring state equality is checked by value, not reference.
+- **ADB Storage**: Emulators can run out of storage space quickly. Regularly wiping data or increasing internal storage helps avoid "ADB Exit Code 1" errors.
 
 ---
 

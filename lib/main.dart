@@ -1,3 +1,4 @@
+import 'package:bloc_learning/UI/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:bloc_learning/equatable_testing.dart';
 
@@ -16,7 +17,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: const EquatableTesting()
+      home: const CounterScreen(),
     );
   }
 }

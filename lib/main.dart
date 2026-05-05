@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/equatable_testing.dart';
+import 'package:bloc_learning/equatable_testing.dart';
 
 void main() {
   runApp(const MyApp());

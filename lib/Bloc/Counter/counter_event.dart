@@ -18,4 +18,3 @@ class CounterDecrementEvent extends CounterEvent {
 class CounterResetEvent extends CounterEvent {
   const CounterResetEvent();
 }
-

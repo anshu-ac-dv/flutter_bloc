@@ -31,11 +31,12 @@ This project documents my transition from simple `StatefulWidgets` to the robust
 *   [x] **Performance Auditing**: Reduced build cycles by optimizing state objects.
 *   [x] **Linter Compliance**: Achieved a 100% clean `flutter analyze` report.
 
-### 🟠 Phase 3: The BLoC Paradigm (In Progress)
+### 🟠 Phase 3: The BLoC Paradigm (Completed)
 *   [x] **Infrastructure**: Successfully integrated `flutter_bloc` & `bloc`.
 *   [x] **Architecture Pivot**: Resolved critical naming conflicts and refactored project structure to `bloc_learning`.
+*   [x] **Event-Driven**: Implemented full `Bloc` for the Counter logic (Increment, Decrement, Reset).
+*   [x] **UI Integration**: Connected `CounterBloc` to the UI using `BlocProvider` and `BlocBuilder`.
 *   [ ] **Implementation**: Developing `Cubit` for simple state transitions.
-*   [ ] **Event-Driven**: Implementing full `Bloc` for complex asynchronous flows.
 
 ### 🔴 Phase 4: Production Ready (Upcoming)
 *   [ ] **Repository Pattern**: Abstracting data sources.
@@ -54,6 +55,10 @@ This project documents my transition from simple `StatefulWidgets` to the robust
 ### 2. ADB Code 1 (Storage Exhaustion)
 **Issue**: Installation failure on Android Emulators due to insufficient storage partition.
 **Solution**: Analyzed disk usage via `adb shell df -h`, cleared cache, and increased partition size in AVD settings.
+
+### 3. Reactive UI with BlocBuilder
+**Goal**: Efficiently rebuild only the necessary parts of the UI when the counter state changes.
+**Solution**: Wrapped the counter text in a `BlocBuilder`. Used `context.read()` for event dispatching to keep the widget tree clean and performant.
 
 ---
 

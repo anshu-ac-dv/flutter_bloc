@@ -42,6 +42,13 @@ class _CounterScreenState extends State<CounterScreen> {
               const SizedBox(width: 20),
               ElevatedButton(
                 onPressed: () {
+                  context.read<CounterBloc>().add(CounterResetEvent());
+                },
+                child: const Text('Reset'),
+              ),
+              const SizedBox(width: 20),
+              ElevatedButton(
+                onPressed: () {
                   context.read<CounterBloc>().add(CounterDecrementEvent());
                 },
                 child: const Text('Decrement'),

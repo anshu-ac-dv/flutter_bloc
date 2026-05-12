@@ -14,7 +14,3 @@ class CounterIncrementEvent extends CounterEvent {
 class CounterDecrementEvent extends CounterEvent {
   const CounterDecrementEvent();
 }
-
-class CounterResetEvent extends CounterEvent {
-  const CounterResetEvent();
-}

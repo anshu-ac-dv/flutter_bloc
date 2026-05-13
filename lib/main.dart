@@ -1,7 +1,7 @@
-import 'package:bloc_learning/UI/counter_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Bloc/Counter/counter_bloc.dart';
+import 'Counter/counter_screen.dart';
 
 void main() {
   runApp(const MyApp());

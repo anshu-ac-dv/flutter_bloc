@@ -2,6 +2,7 @@ import 'package:bloc_learning/Switch/switch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Bloc/Counter/counter_bloc.dart';
+import 'Bloc/Switch/switch_bloc.dart';
 import 'Counter/counter_screen.dart';
 
 void main() {
@@ -17,7 +18,7 @@ class MyApp extends StatelessWidget {
     return MultiBlocProvider(
       providers: [
         BlocProvider(create: (_) => CounterBloc()),
-        //BlocProvider(create: (_) => SwitchBloc()),
+        BlocProvider(create: (_) => SwitchBloc()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

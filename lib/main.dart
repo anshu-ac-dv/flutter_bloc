@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         //home: const CounterScreen(),
         //home: SwitchScreen(),
-        home: ImagePicker(),
+        home: const ImagePickerScreen(),
       ),
     );
   }

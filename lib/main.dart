@@ -1,3 +1,4 @@
+import 'package:bloc_learning/ImagePicker/image_picker.dart';
 import 'package:bloc_learning/Switch/switch_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         ),
         //home: const CounterScreen(),
-        home: SwitchScreen(),
+        //home: SwitchScreen(),
+        home: ImagePicker(),
       ),
     );
   }

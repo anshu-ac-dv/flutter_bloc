@@ -9,7 +9,6 @@ class ImagePickerState extends Equatable{
   }
 
   @override
-  // TODO: implement sprops
   List<Object?> get props => [file];
 }
 

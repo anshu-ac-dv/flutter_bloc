@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Bloc/Counter/counter_bloc.dart';
 import '../Bloc/Counter/counter_event.dart';
 import '../Bloc/Counter/counter_state.dart';
@@ -69,7 +70,7 @@ class CounterScreen extends StatelessWidget {
               children: [
                 _buildActionButton(
                   context,
-                  icon: Icons.remove,
+                  icon: FontAwesomeIcons.minus,
                   color: Colors.redAccent,
                   // Dispatching Decrement Event
                   onPressed: () => context.read<CounterBloc>().add(CounterDecrementEvent()),
@@ -77,7 +78,7 @@ class CounterScreen extends StatelessWidget {
                 const SizedBox(width: 20),
                 _buildActionButton(
                   context,
-                  icon: Icons.refresh,
+                  icon: FontAwesomeIcons.rotate,
                   color: Colors.orangeAccent,
                   isLarge: false,
                   // Dispatching Reset Event
@@ -86,7 +87,7 @@ class CounterScreen extends StatelessWidget {
                 const SizedBox(width: 20),
                 _buildActionButton(
                   context,
-                  icon: Icons.add,
+                  icon: FontAwesomeIcons.plus,
                   color: Colors.greenAccent,
                   // Dispatching Increment Event
                   onPressed: () => context.read<CounterBloc>().add(CounterIncrementEvent()),
@@ -102,7 +103,7 @@ class CounterScreen extends StatelessWidget {
   // Helper method to create consistent interactive buttons
   Widget _buildActionButton(
     BuildContext context, {
-    required IconData icon,
+    required dynamic icon,
     required Color color,
     required VoidCallback onPressed,
     bool isLarge = true,
@@ -116,7 +117,7 @@ class CounterScreen extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: IconButton(
-        icon: Icon(icon, color: color, size: isLarge ? 30 : 24),
+        icon: Icon(icon as IconData, color: color, size: isLarge ? 24 : 18),
         onPressed: onPressed,
       ),
     );

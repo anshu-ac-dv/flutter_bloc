@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import '../Bloc/Switch/switch_bloc.dart';
 
 /// [SwitchScreen] demonstrates multi-property state management.
@@ -37,9 +38,10 @@ class SwitchScreen extends StatelessWidget {
                     children: [
                       Row(
                         children: [
-                          Icon(
-                            state.isEnable ? Icons.notifications_active : Icons.notifications_off,
+                          FaIcon(
+                            state.isEnable ? FontAwesomeIcons.bell : FontAwesomeIcons.bellSlash,
                             color: state.isEnable ? Colors.orange : Colors.grey,
+                            size: 20,
                           ),
                           const SizedBox(width: 15),
                           const Text("Push Notifications", style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),

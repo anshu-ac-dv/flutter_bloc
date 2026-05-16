@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Counter/counter_screen.dart';
 import 'ImagePicker/image_picker.dart';
 import 'Switch/switch_screen.dart';
@@ -42,7 +43,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _FeatureCard(
                         title: 'Counter App',
                         description: 'State, Events & Equatable',
-                        icon: Icons.add_circle_outline,
+                        icon: FontAwesomeIcons.calculator,
                         color: Colors.blue,
                         level: 'Lvl 1',
                         onTap: () => _navigateTo(context, const CounterScreen()),
@@ -51,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _FeatureCard(
                         title: 'Switch & Slider',
                         description: 'Multi-property state management',
-                        icon: Icons.tune,
+                        icon: FontAwesomeIcons.sliders,
                         color: Colors.orange,
                         level: 'Lvl 2',
                         onTap: () => _navigateTo(context, const SwitchScreen()),
@@ -67,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _FeatureCard(
                         title: 'Native Image Picker',
                         description: 'Platform APIs & Utils abstraction',
-                        icon: Icons.camera_alt_outlined,
+                        icon: FontAwesomeIcons.camera,
                         color: Colors.green,
                         level: 'Lvl 3',
                         isNew: true,
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       _FeatureCard(
                         title: 'API & Repositories',
                         description: 'Clean Architecture with Cubit',
-                        icon: Icons.cloud_sync_outlined,
+                        icon: FontAwesomeIcons.database,
                         color: Colors.grey,
                         level: 'Lvl 4',
                         onTap: () {},
@@ -172,11 +173,11 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         Row(
           children: [
-            Icon(
+            FaIcon(
               isLocked
-                  ? Icons.lock_outline
-                  : (isCompleted ? Icons.check_circle : Icons.radio_button_checked),
-              size: 18,
+                  ? FontAwesomeIcons.lock
+                  : (isCompleted ? FontAwesomeIcons.circleCheck : FontAwesomeIcons.circleDot),
+              size: 16,
               color: isLocked ? Colors.grey : (isCompleted ? Colors.green : Colors.blueAccent),
             ),
             const SizedBox(width: 8),
@@ -224,7 +225,7 @@ class _HomeScreenState extends State<HomeScreen> {
 class _FeatureCard extends StatelessWidget {
   final String title;
   final String description;
-  final IconData icon;
+  final dynamic icon;
   final Color color;
   final String level;
   final bool isNew;
@@ -274,7 +275,7 @@ class _FeatureCard extends StatelessWidget {
                         color: color.withOpacity(0.1),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(icon, color: color, size: 24),
+                      child: Icon(icon, color: color, size: 20),
                     ),
                     if (isNew)
                       Positioned(
@@ -329,9 +330,9 @@ class _FeatureCard extends StatelessWidget {
                   ),
                 ),
                 Icon(
-                  isLocked ? Icons.lock_outline : Icons.chevron_right,
+                  (isLocked ? FontAwesomeIcons.lock : FontAwesomeIcons.chevronRight) as IconData,
                   color: Colors.grey[300],
-                  size: 20,
+                  size: 16,
                 ),
               ],
             ),

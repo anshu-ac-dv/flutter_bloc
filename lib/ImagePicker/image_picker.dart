@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:bloc_learning/Bloc/ImagePicker/image_picker_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 /// [ImagePickerScreen] demonstrates BLoC with native device interaction.
 /// It uses a separate Utility class for the platform-specific logic.
@@ -35,14 +36,14 @@ class ImagePickerScreen extends StatelessWidget {
                     children: [
                       _buildSourceButton(
                         context,
-                        icon: Icons.camera_alt,
+                        icon: FontAwesomeIcons.camera,
                         label: "Camera",
                         color: Colors.green,
                         onTap: () => context.read<ImagePickerBloc>().add(CameraCapture()),
                       ),
                       _buildSourceButton(
                         context,
-                        icon: Icons.photo_library,
+                        icon: FontAwesomeIcons.images,
                         label: "Gallery",
                         color: Colors.blue,
                         onTap: () => context.read<ImagePickerBloc>().add(GalleryPicker()),
@@ -76,7 +77,7 @@ class ImagePickerScreen extends StatelessWidget {
                       minimumSize: const Size(double.infinity, 56),
                       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
                     ),
-                    icon: const Icon(Icons.refresh),
+                    icon: const FaIcon(FontAwesomeIcons.arrowsRotate, size: 18),
                     label: const Text("Retake Photo", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
                   ),
                   const SizedBox(height: 30),
@@ -100,7 +101,7 @@ class ImagePickerScreen extends StatelessWidget {
             color: Colors.grey[100],
             shape: BoxShape.circle,
           ),
-          child: Icon(Icons.image_search, size: 80, color: Colors.grey[300]),
+          child: const FaIcon(FontAwesomeIcons.image, size: 80, color: Color(0xFFE0E0E0)),
         ),
         const SizedBox(height: 24),
         const Text(
@@ -119,7 +120,7 @@ class ImagePickerScreen extends StatelessWidget {
   // Custom button for Camera/Gallery selection
   Widget _buildSourceButton(
     BuildContext context, {
-    required IconData icon,
+    required dynamic icon,
     required String label,
     required Color color,
     required VoidCallback onTap,
@@ -135,7 +136,7 @@ class ImagePickerScreen extends StatelessWidget {
               color: color.withOpacity(0.1),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Icon(icon, color: color, size: 32),
+            child: Icon(icon as IconData?, color: color, size: 28),
           ),
           const SizedBox(height: 12),
           Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),

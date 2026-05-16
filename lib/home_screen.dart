@@ -17,51 +17,82 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
         title: const Text(
-          'BLoC Learning Hub',
+          'Learning Roadmap',
           style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
         ),
         elevation: 0,
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
-        actions: [
-          IconButton(
-            onPressed: () {},
-            icon: const Icon(Icons.info_outline, color: Colors.white),
-          )
-        ],
       ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            _buildHeader(),
+            _buildProgressHeader(),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _FeatureCard(
-                    title: 'Counter Example',
-                    description: 'Discrete state transitions using Events & States.',
-                    icon: Icons.add_circle_outline,
-                    color: Colors.blue,
-                    onTap: () => _navigateTo(context, const CounterScreen()),
+                  _buildPhaseSection(
+                    phase: 'Phase 3: BLoC Fundamentals',
+                    level: 'Intermediate',
+                    isCompleted: true,
+                    children: [
+                      _FeatureCard(
+                        title: 'Counter App',
+                        description: 'State, Events & Equatable',
+                        icon: Icons.add_circle_outline,
+                        color: Colors.blue,
+                        level: 'Lvl 1',
+                        onTap: () => _navigateTo(context, const CounterScreen()),
+                      ),
+                      const SizedBox(height: 12),
+                      _FeatureCard(
+                        title: 'Switch & Slider',
+                        description: 'Multi-property state management',
+                        icon: Icons.tune,
+                        color: Colors.orange,
+                        level: 'Lvl 2',
+                        onTap: () => _navigateTo(context, const SwitchScreen()),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 16),
-                  _FeatureCard(
-                    title: 'Switch & Slider',
-                    description: 'Reactive UI managing multiple related components.',
-                    icon: Icons.tune,
-                    color: Colors.orange,
-                    onTap: () => _navigateTo(context, const SwitchScreen()),
+                  const SizedBox(height: 24),
+                  _buildPhaseSection(
+                    phase: 'Phase 4: Advanced Integration',
+                    level: 'Advanced',
+                    isCompleted: false,
+                    children: [
+                      _FeatureCard(
+                        title: 'Native Image Picker',
+                        description: 'Platform APIs & Utils abstraction',
+                        icon: Icons.camera_alt_outlined,
+                        color: Colors.green,
+                        level: 'Lvl 3',
+                        isNew: true,
+                        onTap: () => _navigateTo(context, const ImagePickerScreen()),
+                      ),
+                    ],
                   ),
-                  const SizedBox(height: 16),
-                  _FeatureCard(
-                    title: 'Image Picker',
-                    description: 'Native integration with Camera and Gallery access.',
-                    icon: Icons.camera_alt_outlined,
-                    color: Colors.green,
-                    onTap: () => _navigateTo(context, const ImagePickerScreen()),
+                  const SizedBox(height: 24),
+                  _buildPhaseSection(
+                    phase: 'Phase 5: Production Ready',
+                    level: 'Expert',
+                    isCompleted: false,
+                    isLocked: true,
+                    children: [
+                      _FeatureCard(
+                        title: 'API & Repositories',
+                        description: 'Clean Architecture with Cubit',
+                        icon: Icons.cloud_sync_outlined,
+                        color: Colors.grey,
+                        level: 'Lvl 4',
+                        onTap: () {},
+                      ),
+                    ],
                   ),
+                  const SizedBox(height: 30),
                 ],
               ),
             ),
@@ -71,10 +102,10 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildProgressHeader() {
     return Container(
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 30),
+      padding: const EdgeInsets.fromLTRB(24, 10, 24, 30),
       decoration: const BoxDecoration(
         color: Colors.blueAccent,
         borderRadius: BorderRadius.only(
@@ -85,33 +116,100 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const Text(
-            'Welcome back,',
-            style: TextStyle(color: Colors.white70, fontSize: 16),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const Text(
+                'Overall Progress',
+                style: TextStyle(color: Colors.white70, fontSize: 14),
+              ),
+              Text(
+                '75%',
+                style: TextStyle(
+                  color: Colors.white.withOpacity(0.9),
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 10),
+          ClipRRect(
+            borderRadius: BorderRadius.circular(10),
+            child: LinearProgressIndicator(
+              value: 0.75,
+              backgroundColor: Colors.white.withOpacity(0.2),
+              valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
+              minHeight: 8,
+            ),
+          ),
+          const SizedBox(height: 20),
           const Text(
-            'Mastering Flutter BLoC',
+            'Keep going, Anshu!',
             style: TextStyle(
               color: Colors.white,
-              fontSize: 26,
+              fontSize: 22,
               fontWeight: FontWeight.bold,
             ),
           ),
-          const SizedBox(height: 12),
-          Container(
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-            decoration: BoxDecoration(
-              color: Colors.white.withOpacity(0.2),
-              borderRadius: BorderRadius.circular(20),
-            ),
-            child: const Text(
-              'Phase 4: Advanced Integration',
-              style: TextStyle(color: Colors.white, fontSize: 12),
-            ),
-          )
+          const Text(
+            'You are mastering Advanced Integration.',
+            style: TextStyle(color: Colors.white70, fontSize: 14),
+          ),
         ],
       ),
+    );
+  }
+
+  Widget _buildPhaseSection({
+    required String phase,
+    required String level,
+    required bool isCompleted,
+    bool isLocked = false,
+    required List<Widget> children,
+  }) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(
+              isLocked
+                  ? Icons.lock_outline
+                  : (isCompleted ? Icons.check_circle : Icons.radio_button_checked),
+              size: 18,
+              color: isLocked ? Colors.grey : (isCompleted ? Colors.green : Colors.blueAccent),
+            ),
+            const SizedBox(width: 8),
+            Text(
+              phase.toUpperCase(),
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w800,
+                color: isLocked ? Colors.grey : Colors.blueGrey[800],
+                letterSpacing: 1.1,
+              ),
+            ),
+            const Spacer(),
+            Container(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+              decoration: BoxDecoration(
+                color: (isLocked ? Colors.grey : Colors.blueAccent).withOpacity(0.1),
+                borderRadius: BorderRadius.circular(4),
+              ),
+              child: Text(
+                level,
+                style: TextStyle(
+                  fontSize: 10,
+                  fontWeight: FontWeight.bold,
+                  color: isLocked ? Colors.grey : Colors.blueAccent,
+                ),
+              ),
+            )
+          ],
+        ),
+        const SizedBox(height: 16),
+        ...children,
+      ],
     );
   }
 
@@ -128,6 +226,8 @@ class _FeatureCard extends StatelessWidget {
   final String description;
   final IconData icon;
   final Color color;
+  final String level;
+  final bool isNew;
   final VoidCallback onTap;
 
   const _FeatureCard({
@@ -135,18 +235,22 @@ class _FeatureCard extends StatelessWidget {
     required this.description,
     required this.icon,
     required this.color,
+    required this.level,
+    this.isNew = false,
     required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
+    bool isLocked = color == Colors.grey;
+    
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.grey.withOpacity(0.1),
+            color: Colors.black.withOpacity(0.03),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 4),
@@ -156,44 +260,79 @@ class _FeatureCard extends StatelessWidget {
       child: Material(
         color: Colors.transparent,
         child: InkWell(
-          onTap: onTap,
-          borderRadius: BorderRadius.circular(20),
+          onTap: isLocked ? null : onTap,
+          borderRadius: BorderRadius.circular(16),
           child: Padding(
-            padding: const EdgeInsets.all(20.0),
+            padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
-                Container(
-                  padding: const EdgeInsets.all(12),
-                  decoration: BoxDecoration(
-                    color: color.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Icon(icon, color: color, size: 30),
+                Stack(
+                  children: [
+                    Container(
+                      padding: const EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: color.withOpacity(0.1),
+                        borderRadius: BorderRadius.circular(12),
+                      ),
+                      child: Icon(icon, color: color, size: 24),
+                    ),
+                    if (isNew)
+                      Positioned(
+                        right: 0,
+                        top: 0,
+                        child: Container(
+                          width: 10,
+                          height: 10,
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            shape: BoxShape.circle,
+                            border: Border.all(color: Colors.white, width: 2),
+                          ),
+                        ),
+                      )
+                  ],
                 ),
-                const SizedBox(width: 20),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        title,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.bold,
-                        ),
+                      Row(
+                        children: [
+                          Text(
+                            title,
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                              color: isLocked ? Colors.grey : Colors.black87,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Text(
+                            level,
+                            style: TextStyle(
+                              fontSize: 10,
+                              color: Colors.grey[400],
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ],
                       ),
-                      const SizedBox(height: 4),
                       Text(
                         description,
                         style: TextStyle(
-                          fontSize: 14,
-                          color: Colors.grey[600],
+                          fontSize: 12,
+                          color: Colors.grey[500],
                         ),
                       ),
                     ],
                   ),
                 ),
-                Icon(Icons.arrow_forward_ios, color: Colors.grey[300], size: 16),
+                Icon(
+                  isLocked ? Icons.lock_outline : Icons.chevron_right,
+                  color: Colors.grey[300],
+                  size: 20,
+                ),
               ],
             ),
           ),

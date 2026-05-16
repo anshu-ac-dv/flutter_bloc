@@ -59,7 +59,7 @@ class ImagePickerScreen extends StatelessWidget {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(24),
                         boxShadow: [
-                          BoxShadow(color: Colors.black.withOpacity(0.1), blurRadius: 20, spreadRadius: 2)
+                          BoxShadow(color: Colors.black.withAlpha(25), blurRadius: 20, spreadRadius: 2)
                         ],
                       ),
                       child: ClipRRect(
@@ -101,7 +101,7 @@ class ImagePickerScreen extends StatelessWidget {
             color: Colors.grey[100],
             shape: BoxShape.circle,
           ),
-          child: const FaIcon(FontAwesomeIcons.image, size: 80, color: Color(0xFFE0E0E0)),
+          child: Center(child: const FaIcon(FontAwesomeIcons.image, size: 80, color: Color(0xFFE0E0E0))),
         ),
         const SizedBox(height: 24),
         const Text(
@@ -133,10 +133,10 @@ class ImagePickerScreen extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: color.withOpacity(0.1),
+              color: color.withAlpha(25),
               borderRadius: BorderRadius.circular(20),
             ),
-            child: Icon(icon as IconData?, color: color, size: 28),
+            child: FaIcon(icon, color: color, size: 28),
           ),
           const SizedBox(height: 12),
           Text(label, style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14)),

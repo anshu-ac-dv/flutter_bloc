@@ -33,7 +33,7 @@ class CounterScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(
-                    color: Colors.blueAccent.withOpacity(0.1),
+                    color: Colors.blueAccent.withAlpha(25),
                     blurRadius: 20,
                     spreadRadius: 5,
                   )
@@ -113,11 +113,11 @@ class CounterScreen extends StatelessWidget {
       height: size,
       width: size,
       decoration: BoxDecoration(
-        color: color.withOpacity(0.15),
+        color: color.withAlpha(38),
         shape: BoxShape.circle,
       ),
       child: IconButton(
-        icon: Icon(icon as IconData, color: color, size: isLarge ? 24 : 18),
+        icon: FaIcon(icon, color: color, size: isLarge ? 24 : 18),
         onPressed: onPressed,
       ),
     );

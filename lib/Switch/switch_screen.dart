@@ -49,7 +49,7 @@ class SwitchScreen extends StatelessWidget {
                       ),
                       Switch.adaptive(
                         value: state.isEnable,
-                        activeColor: Colors.orange,
+                        activeTrackColor: Colors.orange,
                         onChanged: (newValue) {
                           // Dispatch Event: Toggle Notification
                           context.read<SwitchBloc>().add(const EnableOrDisableNotification());
@@ -78,7 +78,7 @@ class SwitchScreen extends StatelessWidget {
                         decoration: BoxDecoration(
                           color: Colors.orange.withOpacity(state.slider),
                           borderRadius: BorderRadius.circular(15),
-                          border: Border.all(color: Colors.orange.withOpacity(0.3)),
+                          border: Border.all(color: Colors.orange.withAlpha(77)),
                         ),
                         child: Center(
                           child: Text(
@@ -95,7 +95,7 @@ class SwitchScreen extends StatelessWidget {
                       Slider(
                         value: state.slider,
                         activeColor: Colors.orange,
-                        inactiveColor: Colors.orange.withOpacity(0.1),
+                        inactiveColor: Colors.orange.withAlpha(25),
                         onChanged: (value) {
                           // Dispatch Event: Update Slider value
                           context.read<SwitchBloc>().add(SliderEvent(slider: value));
@@ -120,7 +120,7 @@ class SwitchScreen extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
-          BoxShadow(color: Colors.black.withOpacity(0.02), blurRadius: 10, offset: const Offset(0, 5))
+          BoxShadow(color: Colors.black.withAlpha(5), blurRadius: 10, offset: const Offset(0, 5))
         ],
       ),
       child: child,

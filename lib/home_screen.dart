@@ -127,7 +127,7 @@ class _HomeScreenState extends State<HomeScreen> {
               Text(
                 '75%',
                 style: TextStyle(
-                  color: Colors.white.withOpacity(0.9),
+                  color: Colors.white.withAlpha(230),
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
               value: 0.75,
-              backgroundColor: Colors.white.withOpacity(0.2),
+              backgroundColor: Colors.white.withAlpha(50),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
               minHeight: 8,
             ),
@@ -194,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: (isLocked ? Colors.grey : Colors.blueAccent).withOpacity(0.1),
+                color: (isLocked ? Colors.grey : Colors.blueAccent).withAlpha(25),
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
@@ -251,7 +251,7 @@ class _FeatureCard extends StatelessWidget {
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.03),
+            color: Colors.black.withAlpha(8),
             spreadRadius: 2,
             blurRadius: 10,
             offset: const Offset(0, 4),
@@ -272,10 +272,10 @@ class _FeatureCard extends StatelessWidget {
                     Container(
                       padding: const EdgeInsets.all(10),
                       decoration: BoxDecoration(
-                        color: color.withOpacity(0.1),
+                        color: color.withAlpha(25),
                         borderRadius: BorderRadius.circular(12),
                       ),
-                      child: Icon(icon, color: color, size: 20),
+                      child: FaIcon(icon, color: color, size: 20),
                     ),
                     if (isNew)
                       Positioned(
@@ -329,8 +329,8 @@ class _FeatureCard extends StatelessWidget {
                     ],
                   ),
                 ),
-                Icon(
-                  (isLocked ? FontAwesomeIcons.lock : FontAwesomeIcons.chevronRight) as IconData,
+                FaIcon(
+                  isLocked ? FontAwesomeIcons.lock : FontAwesomeIcons.chevronRight,
                   color: Colors.grey[300],
                   size: 16,
                 ),

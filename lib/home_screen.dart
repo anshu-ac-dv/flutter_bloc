@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'Counter/counter_screen.dart';
 import 'ImagePicker/image_picker.dart';
 import 'Switch/switch_screen.dart';
+import 'Todo/todo_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -46,7 +47,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         icon: FontAwesomeIcons.calculator,
                         color: Colors.blue,
                         level: 'Lvl 1',
-                        onTap: () => _navigateTo(context, const CounterScreen()),
+                        onTap: () =>
+                            _navigateTo(context, const CounterScreen()),
                       ),
                       const SizedBox(height: 12),
                       _FeatureCard(
@@ -72,7 +74,17 @@ class _HomeScreenState extends State<HomeScreen> {
                         color: Colors.green,
                         level: 'Lvl 3',
                         isNew: true,
-                        onTap: () => _navigateTo(context, const ImagePickerScreen()),
+                        onTap: () =>
+                            _navigateTo(context, const ImagePickerScreen()),
+                      ),
+                      const SizedBox(height: 12),
+                      _FeatureCard(
+                        title: 'Quest List (Todo)',
+                        description: 'List manipulation & BLoC state',
+                        icon: FontAwesomeIcons.clipboardList,
+                        color: Colors.purple,
+                        level: 'Lvl 3+',
+                        onTap: () => _navigateTo(context, const TodoScreen()),
                       ),
                     ],
                   ),
@@ -176,9 +188,13 @@ class _HomeScreenState extends State<HomeScreen> {
             FaIcon(
               isLocked
                   ? FontAwesomeIcons.lock
-                  : (isCompleted ? FontAwesomeIcons.circleCheck : FontAwesomeIcons.circleDot),
+                  : (isCompleted
+                        ? FontAwesomeIcons.circleCheck
+                        : FontAwesomeIcons.circleDot),
               size: 16,
-              color: isLocked ? Colors.grey : (isCompleted ? Colors.green : Colors.blueAccent),
+              color: isLocked
+                  ? Colors.grey
+                  : (isCompleted ? Colors.green : Colors.blueAccent),
             ),
             const SizedBox(width: 8),
             Text(
@@ -194,7 +210,9 @@ class _HomeScreenState extends State<HomeScreen> {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
               decoration: BoxDecoration(
-                color: (isLocked ? Colors.grey : Colors.blueAccent).withAlpha(25),
+                color: (isLocked ? Colors.grey : Colors.blueAccent).withAlpha(
+                  25,
+                ),
                 borderRadius: BorderRadius.circular(4),
               ),
               child: Text(
@@ -205,7 +223,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: isLocked ? Colors.grey : Colors.blueAccent,
                 ),
               ),
-            )
+            ),
           ],
         ),
         const SizedBox(height: 16),
@@ -215,10 +233,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _navigateTo(BuildContext context, Widget screen) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => screen),
-    );
+    Navigator.push(context, MaterialPageRoute(builder: (context) => screen));
   }
 }
 
@@ -244,7 +259,7 @@ class _FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLocked = color == Colors.grey;
-    
+
     return Container(
       decoration: BoxDecoration(
         color: Colors.white,
@@ -290,7 +305,7 @@ class _FeatureCard extends StatelessWidget {
                             border: Border.all(color: Colors.white, width: 2),
                           ),
                         ),
-                      )
+                      ),
                   ],
                 ),
                 const SizedBox(width: 16),
@@ -321,16 +336,15 @@ class _FeatureCard extends StatelessWidget {
                       ),
                       Text(
                         description,
-                        style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.grey[500],
-                        ),
+                        style: TextStyle(fontSize: 12, color: Colors.grey[500]),
                       ),
                     ],
                   ),
                 ),
                 FaIcon(
-                  isLocked ? FontAwesomeIcons.lock : FontAwesomeIcons.chevronRight,
+                  isLocked
+                      ? FontAwesomeIcons.lock
+                      : FontAwesomeIcons.chevronRight,
                   color: Colors.grey[300],
                   size: 16,
                 ),

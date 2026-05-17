@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'Bloc/Counter/counter_bloc.dart';
 import 'Bloc/ImagePicker/image_picker_bloc.dart';
 import 'Bloc/Switch/switch_bloc.dart';
+import 'Bloc/Todo/todo_bloc.dart';
 
 void main() {
   runApp(const MyApp());
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(create: (_) => CounterBloc()),
         BlocProvider(create: (_) => SwitchBloc()),
+        BlocProvider(create: (_) => TodoBloc()),
         BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
       ],
       child: MaterialApp(

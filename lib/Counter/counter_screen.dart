@@ -15,7 +15,10 @@ class CounterScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.grey[50],
       appBar: AppBar(
-        title: const Text('Counter Master', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: const Text(
+          'Counter Master',
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.transparent,
@@ -36,14 +39,18 @@ class CounterScreen extends StatelessWidget {
                     color: Colors.blueAccent.withAlpha(25),
                     blurRadius: 20,
                     spreadRadius: 5,
-                  )
+                  ),
                 ],
               ),
               child: Column(
                 children: [
                   const Text(
                     'Current Value',
-                    style: TextStyle(color: Colors.grey, fontSize: 16, fontWeight: FontWeight.w500),
+                    style: TextStyle(
+                      color: Colors.grey,
+                      fontSize: 16,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   // BLoC Integration: BlocBuilder listens for state changes
@@ -63,7 +70,7 @@ class CounterScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 50),
-            
+
             // --- UI: Interactive Control Buttons ---
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -73,7 +80,8 @@ class CounterScreen extends StatelessWidget {
                   icon: FontAwesomeIcons.minus,
                   color: Colors.redAccent,
                   // Dispatching Decrement Event
-                  onPressed: () => context.read<CounterBloc>().add(CounterDecrementEvent()),
+                  onPressed: () =>
+                      context.read<CounterBloc>().add(CounterDecrementEvent()),
                 ),
                 const SizedBox(width: 20),
                 _buildActionButton(
@@ -82,7 +90,8 @@ class CounterScreen extends StatelessWidget {
                   color: Colors.orangeAccent,
                   isLarge: false,
                   // Dispatching Reset Event
-                  onPressed: () => context.read<CounterBloc>().add(CounterResetEvent()),
+                  onPressed: () =>
+                      context.read<CounterBloc>().add(CounterResetEvent()),
                 ),
                 const SizedBox(width: 20),
                 _buildActionButton(
@@ -90,7 +99,8 @@ class CounterScreen extends StatelessWidget {
                   icon: FontAwesomeIcons.plus,
                   color: Colors.greenAccent,
                   // Dispatching Increment Event
-                  onPressed: () => context.read<CounterBloc>().add(CounterIncrementEvent()),
+                  onPressed: () =>
+                      context.read<CounterBloc>().add(CounterIncrementEvent()),
                 ),
               ],
             ),

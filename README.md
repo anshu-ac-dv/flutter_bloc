@@ -26,6 +26,7 @@ The application is structured as a progressive learning journey, divided into **
 | Feature | Level | Learning Objective |
 | :--- | :--- | :--- |
 | **Image Picker** | `Lvl 3` | Native API interaction, Async BLoC events, and Permission handling. |
+| **Quest List (Todo)** | `Lvl 3+` | Complex state objects (Lists), adding/removing items, and persistent-ready logic. |
 
 ### 🔴 Phase 5: Production Ready `Expert`
 | Feature | Level | Learning Objective |

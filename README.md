@@ -25,7 +25,7 @@ The application is structured as a progressive learning journey, divided into **
 ### 🟡 Phase 4: Advanced Integration `Advanced`
 | Feature | Level | Learning Objective |
 | :--- | :--- | :--- |
-| **Image Picker** | `Lvl 3` | Native API interaction, Async BLoC events, and Permission handling. |
+| **Native Image Picker** | `Lvl 3` | Native API interaction, Async BLoC events, and Permission handling. |
 | **Quest List (Todo)** | `Lvl 3+` | Complex state objects (Lists), adding/removing items, and persistent-ready logic. |
 
 ### 🔴 Phase 5: Production Ready `Expert`
@@ -38,7 +38,7 @@ The application is structured as a progressive learning journey, divided into **
 ## 🎨 Visual Excellence & UX
 
 I have completely redesigned the UI to be **interactive** and **intuitive**:
-- **Roadmap Dashboard**: A centralized hub showing overall progress (currently at 75%).
+- **Roadmap Dashboard**: A centralized hub showing overall progress (currently at 85%).
 - **Interactive Cards**: High-quality visual feedback with soft shadows and custom iconography.
 - **Animated Transitions**: Smooth state changes using `AnimatedContainer` and BLoC-driven logic.
 
@@ -53,6 +53,7 @@ MultiBlocProvider(
   providers: [
     BlocProvider(create: (_) => CounterBloc()),
     BlocProvider(create: (_) => SwitchBloc()),
+    BlocProvider(create: (_) => TodoBloc()),
     BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
   ],
   child: const MyApp(),
@@ -78,10 +79,11 @@ As I added more features, I moved from simple `StatefulWidgets` to a decoupled a
 ## 📂 Project Structure
 ```text
 lib/
-├── Bloc/                # Business Logic (Counter, Switch, ImagePicker)
+├── Bloc/                # Business Logic (Counter, Switch, Todo, ImagePicker)
 ├── Counter/             # UI: Counter Screen
 ├── Switch/              # UI: Switch & Slider Screen
 ├── ImagePicker/         # UI: Native Image Picker Screen
+├── Todo/                # UI: Quest List (Todo) Screen
 ├── Utils/               # Helper classes (Native API wrappers)
 └── home_screen.dart     # The Roadmap Hub
 ```

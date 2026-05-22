@@ -4,6 +4,7 @@ import 'Counter/counter_screen.dart';
 import 'ImagePicker/image_picker.dart';
 import 'Switch/switch_screen.dart';
 import 'Todo/todo_screen.dart';
+import 'API Integration/user_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -65,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _buildPhaseSection(
                     phase: 'Phase 4: Advanced Integration',
                     level: 'Advanced',
-                    isCompleted: false,
+                    isCompleted: true,
                     children: [
                       _FeatureCard(
                         title: 'Native Image Picker',
@@ -93,17 +94,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     phase: 'Phase 5: Production Ready',
                     level: 'Expert',
                     isCompleted: false,
-                    isLocked: true,
+                    isLocked: false,
                     children: [
                       _FeatureCard(
                         title: 'API & Repositories',
-                        description: 'Clean Architecture with Cubit',
+                        description: 'Clean Architecture with BLoC',
                         icon: FontAwesomeIcons.database,
-                        color: Colors.grey,
+                        color: Colors.red,
                         level: 'Lvl 4',
-                        onTap: () {
-
-                        },
+                        onTap: () => _navigateTo(context, const UserScreen()),
                       ),
                     ],
                   ),
@@ -139,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.white70, fontSize: 14),
               ),
               Text(
-                '75%',
+                '85%',
                 style: TextStyle(
                   color: Colors.white.withAlpha(230),
                   fontWeight: FontWeight.bold,
@@ -151,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
-              value: 0.75,
+              value: 0.85,
               backgroundColor: Colors.white.withAlpha(50),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
               minHeight: 8,
@@ -167,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const Text(
-            'You are mastering Advanced Integration.',
+            'You are mastering Production Ready patterns.',
             style: TextStyle(color: Colors.white70, fontSize: 14),
           ),
         ],

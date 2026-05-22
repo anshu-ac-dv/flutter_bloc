@@ -55,6 +55,7 @@ MultiBlocProvider(
     BlocProvider(create: (_) => SwitchBloc()),
     BlocProvider(create: (_) => TodoBloc()),
     BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
+    BlocProvider(create: (_) => UserBloc(userRepository: UserRepository())),
   ],
   child: const MyApp(),
 )

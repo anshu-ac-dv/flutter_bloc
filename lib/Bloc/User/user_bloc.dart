@@ -18,8 +18,8 @@ class UserBloc extends Bloc<UserEvent, UserState> {
       ) async {
     emit(UserLoading());
     try {
-      final users = await userRepository.fetchUsers();
-      emit(UserLoaded(users.cast<User>()));
+      final List<User> users = await userRepository.fetchUsers();
+      emit(UserLoaded(users));
     } catch (e) {
       emit(UserError('Failed to fetch users: ${e.toString()}'));
     }

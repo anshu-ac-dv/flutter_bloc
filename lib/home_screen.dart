@@ -138,7 +138,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 style: TextStyle(color: Colors.white70, fontSize: 14),
               ),
               Text(
-                '85%',
+                '100%',
                 style: TextStyle(
                   color: Colors.white.withAlpha(230),
                   fontWeight: FontWeight.bold,
@@ -150,7 +150,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ClipRRect(
             borderRadius: BorderRadius.circular(10),
             child: LinearProgressIndicator(
-              value: 0.85,
+              value: 1.0,
               backgroundColor: Colors.white.withAlpha(50),
               valueColor: const AlwaysStoppedAnimation<Color>(Colors.white),
               minHeight: 8,
@@ -166,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const Text(
-            'You are mastering Production Ready patterns.',
+            'You have mastered the BLoC Pattern.',
             style: TextStyle(color: Colors.white70, fontSize: 14),
           ),
         ],

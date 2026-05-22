@@ -31,14 +31,14 @@ The application is structured as a progressive learning journey, divided into **
 ### 🔴 Phase 5: Production Ready `Expert`
 | Feature | Level | Learning Objective |
 | :--- | :--- | :--- |
-| **API & Repositories** | `Lvl 4` | Clean Architecture, Dependency Injection, and Repository pattern. |
+| **Vault Registry (API)** | `Lvl 4` | Clean Architecture, Repository pattern, and remote data fetching. |
 
 ---
 
 ## 🎨 Visual Excellence & UX
 
 I have completely redesigned the UI to be **interactive** and **intuitive**:
-- **Roadmap Dashboard**: A centralized hub showing overall progress (currently at 85%).
+- **Roadmap Dashboard**: A centralized hub showing overall progress (currently at 100%).
 - **Interactive Cards**: High-quality visual feedback with soft shadows and custom iconography.
 - **Animated Transitions**: Smooth state changes using `AnimatedContainer` and BLoC-driven logic.
 
@@ -69,23 +69,28 @@ MultiBlocProvider(
 
 ## 🧠 Engineering Journal: Lessons Learned
 
-#### 📍 The Permission Hurdle (Native APIs)
-Integrating the **Image Picker** taught me the critical importance of platform-specific configurations. Adding `NSCameraUsageDescription` in iOS and `CAMERA` permissions in Android is vital for app stability.
+#### 📍 Clean Architecture & Repositories
+Implementing the **Vault Registry** taught me the importance of separating data fetching (Repository) from business logic (BLoC). This ensures the UI remains "dumb" and only reacts to well-defined states.
 
-#### 📍 Refactoring for Scalability
-As I added more features, I moved from simple `StatefulWidgets` to a decoupled architecture. This separation ensures that the UI only knows *what* to display, while the BLoC knows *how* to handle the data.
+#### 📍 Native API & Permissions
+Integrating the **Image Picker** highlighted the critical need for platform-specific configurations (Android Manifest & iOS Info.plist). Handling permissions correctly is vital for production-ready apps.
+
+#### 📍 Scalability via Multi-Bloc
+Moving to a decoupled architecture allowed me to scale the app from 1 to 5 independent features without creating a "God Bloc". Each feature remains isolated, testable, and maintainable.
 
 ---
 
 ## 📂 Project Structure
 ```text
 lib/
-├── Bloc/                # Business Logic (Counter, Switch, Todo, ImagePicker)
+├── API Integration/     # UI: Vault Registry (API)
+├── Bloc/                # Business Logic (User, Todo, Switch, etc.)
 ├── Counter/             # UI: Counter Screen
+├── Models/              # Data Models (User, etc.)
+├── Repo/                # Data Repositories
 ├── Switch/              # UI: Switch & Slider Screen
-├── ImagePicker/         # UI: Native Image Picker Screen
-├── Todo/                # UI: Quest List (Todo) Screen
-├── Utils/               # Helper classes (Native API wrappers)
+├── Todo/                # UI: Quest List Screen
+├── Utils/               # Helper classes
 └── home_screen.dart     # The Roadmap Hub
 ```
 

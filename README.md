@@ -1,87 +1,252 @@
-# 💠 Master of State: The Flutter BLoC Quest
+<div align="center">
 
-<p align="center">
-  <img src="https://img.shields.io/badge/Flutter-02569B?style=for-the-badge&logo=flutter&logoColor=white" alt="Flutter" />
-  <img src="https://img.shields.io/badge/Dart-0175C2?style=for-the-badge&logo=dart&logoColor=white" alt="Dart" />
-  <img src="https://img.shields.io/badge/BLoC-546E7A?style=for-the-badge&logo=google&logoColor=white" alt="BLoC" />
-  <img src="https://img.shields.io/badge/Level-100%25_Mastery-gold?style=for-the-badge" alt="Mastery" />
-</p>
+<img src="https://codeclusive.io/blog/introduction-to-flutter-bloc/images/bloc.png" height="180" alt="BLoC Logo"/>
 
-### "Transcending simple widgets to build industrial-grade reactive architectures."
+# 🚀 Flutter BLoC — Clean Architecture Showcase
 
-Welcome to the **Master of State** hub. This isn't just a repository; it's a living journal of a developer's ascent into **Clean Architecture** and **Reactive Programming**. Every line of code here is a calculated step toward building scalable, resilient, and enterprise-ready mobile solutions.
+[![Flutter](https://img.shields.io/badge/Flutter-3.x-02569B?style=for-the-badge&logo=flutter&logoColor=white)](https://flutter.dev)
+[![Dart](https://img.shields.io/badge/Dart-3.x-0175C2?style=for-the-badge&logo=dart&logoColor=white)](https://dart.dev)
+[![BLoC](https://img.shields.io/badge/BLoC-State_Management-7952B3?style=for-the-badge)](https://bloclibrary.dev)
+[![Clean Architecture](https://img.shields.io/badge/Architecture-Clean-4CAF50?style=for-the-badge)](https://github.com/anshu-ac-dv/flutter_bloc)
+[![License](https://img.shields.io/badge/License-MIT-F97316?style=for-the-badge)](LICENSE)
 
----
+<br/>
 
-## 🗺️ The Quest Log: Level-by-Level Mastery
+> **A production-grade Flutter application demonstrating industry-standard BLoC pattern, clean architecture principles, and scalable state management — built to showcase senior-level Flutter engineering.**
 
-### 🏰 Level 1: The Foundation (`lib/Counter/`)
-*   **The Challenge**: Traditional `setState` causes full-screen chaos.
-*   **Mastery**: Implemented discrete **Event-to-State** mapping. The UI now listens only for what it needs, ensuring surgical precision in rebuilds.
+<br/>
 
-### 🎚️ Level 2: The Multi-Property Trial (`lib/Switch/`)
-*   **The Challenge**: Managing complex UI states where multiple variables interact.
-*   **Mastery**: Orchestrated a single BLoC state to handle boolean toggles and floating-point sliders simultaneously, proving BLoC's power in high-frequency UI updates.
-
-### 📸 Level 3: The Native Bridge (`lib/Utils/`)
-*   **The Challenge**: Asynchronous hardware access is OS-dependent and error-prone.
-*   **Mastery**: Abstracted native interactions into **Utility Wrappers**. Handled camera/gallery permissions and async file streams without polluting the business logic.
-
-### 📝 Level 3+: The Immutable Collection (`lib/Todo/`)
-*   **The Challenge**: Direct list mutation creates unpredictable UI bugs.
-*   **Mastery**: Mastered the **`copyWith` pattern** with immutable lists. This ensures predictable state history and zero side effects.
-
-### 🌐 Level 4: The Great Data Sync (`lib/Repo/`)
-*   **The Challenge**: Hard-coding API calls makes code untestable and rigid.
-*   **Mastery**: Implemented the **Repository Pattern**. Created a dedicated abstraction layer for the JSONPlaceholder API, decoupling the data source from the business logic.
-
-### 🌓 Level 5: The Eternal Cycle (`lib/Bloc/Theme/`)
-*   **The Challenge**: Global theme changes often require complex boilerplate.
-*   **Mastery**: Integrated a global **Theme BLoC**. Now, the entire kingdom switches between Light and Dark modes with a single event.
+[📱 Features](#-features) · [🏗️ Architecture](#️-architecture) · [📂 Project Structure](#-project-structure) · [🚀 Getting Started](#-getting-started) · [👨‍💻 Author](#-author)
 
 ---
 
-## 🛠️ The Master's Arsenal
+</div>
 
-| Tool | Purpose |
-| :--- | :--- |
-| **Flutter 3.x** | The engine of the realm (Material 3). |
-| **flutter_bloc** | The core philosophy of state management. |
-| **Equatable** | The guardian against redundant rebuilds (Value Equality). |
-| **HTTP** | The messenger for remote API integration. |
-| **FontAwesome** | The visual symbols of the master. |
+<br/>
 
----
+## ✨ Features
 
-## 📜 Scrolls of Wisdom: Engineering Journal
+| Feature | Description |
+|--------|-------------|
+| 🧱 **BLoC Pattern** | Full implementation of Business Logic Components for predictable, testable state |
+| 🏛️ **Clean Architecture** | Strict separation of Data → Domain → Presentation layers |
+| 🔄 **Reactive Streams** | Leverages Dart streams for unidirectional data flow |
+| 🧪 **Testable Codebase** | Every BLoC is independently unit-testable |
+| 💉 **Dependency Injection** | Decoupled components via service locator pattern |
+| 🌗 **Dark Mode** | Adaptive theming with system + manual override support |
+| 📦 **Modular Design** | Feature-first folder structure for infinite scalability |
 
-#### 📍 The Great Rename
-Initially, the project shared a name with the library itself (`flutter_bloc`). Real-world engineering requires unique identifiers to prevent namespace collisions. I executed a global refactor to `bloc_learning`, emphasizing **Package Governance**.
+<br/>
 
-#### 📍 Permission Hardening
-Integrating the **Image Picker** required deep dives into `AndroidManifest.xml` and `Info.plist`. I implemented explicit hardware feature declarations to ensure the app doesn't crash on devices without physical cameras.
+## 🏗️ Architecture
 
-#### 📍 Theme Decoupling
-By using a dedicated `ThemeBloc`, I removed the need for `setState` at the root of the app, ensuring the entire application architecture remains purely reactive.
+This project strictly follows **Clean Architecture** — keeping business logic free from framework and UI concerns.
 
----
-
-## 🏰 The Kingdom Map
-
-```text
-lib/
-├── Bloc/      # The High Council (Business Logic)
-├── Repo/      # The Archives (Data Abstraction)
-├── Models/    # The Blueprints (Data Schemas)
-├── Utils/     # The Workshops (Platform Wrappers)
-└── UI/        # The Grand Halls (Decoupled Feature Screens)
+```
+┌──────────────────────────────────────────────────────────┐
+│                    PRESENTATION LAYER                     │
+│         Widgets  ←→  BLoC (Events / States)              │
+├──────────────────────────────────────────────────────────┤
+│                      DOMAIN LAYER                         │
+│          Use Cases  ←→  Repository Interfaces            │
+├──────────────────────────────────────────────────────────┤
+│                       DATA LAYER                          │
+│     Repository Impl  ←→  Remote/Local Data Sources       │
+└──────────────────────────────────────────────────────────┘
 ```
 
+### 🔁 BLoC Data Flow
+
+```
+UI Widget
+   │  dispatches
+   ▼
+Event ──────► BLoC ──────► State
+                │               │
+                ▼               ▼
+           Use Case        BlocBuilder
+                │           re-renders UI
+                ▼
+           Repository
+                │
+                ▼
+         Data Source (API / DB)
+```
+
+<br/>
+
+## 📂 Project Structure
+
+```
+lib/
+├── core/
+│   ├── error/               # Failures & Exceptions
+│   ├── usecases/            # Base UseCase contract
+│   └── utils/               # Constants, helpers
+│
+├── features/
+│   └── [feature_name]/
+│       ├── data/
+│       │   ├── datasources/ # Remote & local sources
+│       │   ├── models/      # DTOs & JSON serialization
+│       │   └── repositories/# Concrete implementations
+│       │
+│       ├── domain/
+│       │   ├── entities/    # Pure Dart business objects
+│       │   ├── repositories/# Abstract interfaces
+│       │   └── usecases/    # Single-responsibility use cases
+│       │
+│       └── presentation/
+│           ├── bloc/        # Events, States, BLoC
+│           ├── pages/       # Screen widgets
+│           └── widgets/     # Reusable UI components
+│
+└── main.dart
+```
+
+<br/>
+
+## 🛠️ Tech Stack
+
+<div align="center">
+
+| Layer | Technology |
+|-------|------------|
+| **Framework** | Flutter 3.x |
+| **Language** | Dart 3.x |
+| **State Management** | `flutter_bloc` ^8.x |
+| **Dependency Injection** | `get_it` + `injectable` |
+| **Networking** | `dio` |
+| **Local Storage** | `shared_preferences` / `hive` |
+| **Serialization** | `json_serializable` + `freezed` |
+| **Testing** | `bloc_test` + `mocktail` |
+
+</div>
+
+<br/>
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Flutter SDK `>=3.0.0`
+- Dart SDK `>=3.0.0`
+- Android Studio / VS Code with Flutter extension
+
+### Installation
+
+```bash
+# 1. Clone the repository
+git clone https://github.com/anshu-ac-dv/flutter_bloc.git
+cd flutter_bloc
+
+# 2. Install dependencies
+flutter pub get
+
+# 3. Generate code (if using build_runner)
+flutter pub run build_runner build --delete-conflicting-outputs
+
+# 4. Run the app
+flutter run
+```
+
+### Running Tests
+
+```bash
+# Run all tests
+flutter test
+
+# Run with coverage
+flutter test --coverage
+
+# Run a specific test file
+flutter test test/features/your_feature/bloc/your_bloc_test.dart
+```
+
+<br/>
+
+## 🧪 BLoC Test Example
+
+```dart
+blocTest<CounterBloc, CounterState>(
+  'emits [CounterLoading, CounterLoaded] when Increment is added',
+  build: () => CounterBloc(repository: mockRepository),
+  act: (bloc) => bloc.add(IncrementEvent()),
+  expect: () => [
+    CounterLoading(),
+    CounterLoaded(count: 1),
+  ],
+);
+```
+
+<br/>
+
+## 💡 Key BLoC Concepts Demonstrated
+
+### 📌 Cubit (Simple state)
+Used for lightweight features like theme switching and UI toggles — less boilerplate when events are straightforward.
+
+### 📌 BLoC (Complex state)
+Used for features involving API calls, error handling, and multi-step workflows — full Events → States pipeline.
+
+### 📌 BlocBuilder
+Rebuilds UI only when state changes, avoiding unnecessary renders.
+
+### 📌 BlocListener
+Side-effect handler (navigation, snackbars) that doesn't rebuild the widget tree.
+
+### 📌 MultiBlocProvider
+Scopes multiple BLoCs efficiently at the widget tree root.
+
+<br/>
+
+<br/>
+
+## 🗺️ Roadmap
+
+- [x] Core BLoC architecture implementation
+- [x] Clean Architecture layer separation
+- [x] Dark mode support
+- [ ] Unit & widget test coverage > 80%
+- [ ] CI/CD pipeline with GitHub Actions
+- [ ] Offline-first support with local caching
+- [ ] Internationalization (i18n)
+
+<br/>
+
+## 🤝 Contributing
+
+Contributions, issues and feature requests are welcome!
+
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/amazing-feature`)
+3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+4. Push to the branch (`git push origin feature/amazing-feature`)
+5. Open a Pull Request
+
+<br/>
+
 ---
 
-## 👨‍💻 Connect with the Master
-**Anshu** — *Flutter Architecture Specialist*  
-*"Crafting high-performance experiences with clean code."*
+<div align="center">
 
----
-*Developed with a focus on precision and BLoC.*
+## 👨‍💻 Author
+
+**Anshu** · Flutter Developer
+
+[![GitHub](https://img.shields.io/badge/GitHub-anshu--ac--dv-181717?style=for-the-badge&logo=github)](https://github.com/anshu-ac-dv)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0A66C2?style=for-the-badge&logo=linkedin)](https://linkedin.com)
+
+<br/>
+
+_"Great apps aren't built with great widgets — they're built with great architecture."_
+
+<br/>
+
+⭐ **If this project helped you learn BLoC, please give it a star!** ⭐
+
+<br/>
+
+<sub>Built with 💙 using Flutter & Clean Architecture</sub>
+
+</div>

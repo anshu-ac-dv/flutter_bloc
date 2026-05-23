@@ -9,6 +9,8 @@ import 'Bloc/Todo/todo_bloc.dart';
 import 'Bloc/User/user_bloc.dart';
 import 'Bloc/User/user_event.dart';
 import 'Repo/user_repo.dart';
+import 'Bloc/Theme/theme_bloc.dart';
+import 'Bloc/Theme/theme_state.dart';
 
 void main() {
   runApp(const MyApp());
@@ -22,19 +24,34 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        BlocProvider(create: (_) => ThemeBloc()),
         BlocProvider(create: (_) => CounterBloc()),
         BlocProvider(create: (_) => SwitchBloc()),
         BlocProvider(create: (_) => TodoBloc()),
         BlocProvider(create: (_) => ImagePickerBloc(ImagePickerUtils())),
         BlocProvider(create: (_) => UserBloc(userRepository: UserRepository())..add(FetchUsers()))
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-          colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        ),
-        home: const HomeScreen(),
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) {
+          return MaterialApp(
+            debugShowCheckedModeBanner: false,
+            title: 'Flutter Demo',
+            themeMode: state.themeMode,
+            theme: ThemeData(
+              useMaterial3: true,
+              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
+            ),
+            darkTheme: ThemeData(
+              useMaterial3: true,
+              brightness: Brightness.dark,
+              colorScheme: ColorScheme.fromSeed(
+                seedColor: Colors.blueAccent,
+                brightness: Brightness.dark,
+              ),
+            ),
+            home: const HomeScreen(),
+          );
+        },
       ),
     );
   }

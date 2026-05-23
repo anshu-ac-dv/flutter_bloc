@@ -10,14 +10,15 @@ class SwitchScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Property Controller', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
+        foregroundColor: theme.appBarTheme.foregroundColor ?? theme.colorScheme.onSurface,
       ),
       body: Padding(
         padding: const EdgeInsets.all(24.0),
@@ -33,6 +34,7 @@ class SwitchScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _buildControlCard(
+                  context,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -68,6 +70,7 @@ class SwitchScreen extends StatelessWidget {
                 ),
                 const SizedBox(height: 16),
                 _buildControlCard(
+                  context,
                   child: Column(
                     children: [
                       // This box reacts to the slider state in real-time
@@ -113,11 +116,12 @@ class SwitchScreen extends StatelessWidget {
   }
 
   // Wrapper to give controls a clean, elevated look
-  Widget _buildControlCard({required Widget child}) {
+  Widget _buildControlCard(BuildContext context, {required Widget child}) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(20),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(color: Colors.black.withAlpha(5), blurRadius: 10, offset: const Offset(0, 5))

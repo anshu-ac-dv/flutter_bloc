@@ -11,15 +11,16 @@ class TodoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final TextEditingController controller = TextEditingController();
+    final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Quest List', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
+        foregroundColor: theme.appBarTheme.foregroundColor ?? theme.colorScheme.onSurface,
       ),
       body: Column(
         children: [
@@ -46,11 +47,12 @@ class TodoScreen extends StatelessWidget {
   }
 
   Widget _buildInputSection(BuildContext context, TextEditingController controller) {
+    final theme = Theme.of(context);
     return Container(
       padding: const EdgeInsets.all(24),
-      decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
+      decoration: BoxDecoration(
+        color: theme.cardColor,
+        borderRadius: const BorderRadius.only(
           bottomLeft: Radius.circular(30),
           bottomRight: Radius.circular(30),
         ),
@@ -96,11 +98,12 @@ class TodoScreen extends StatelessWidget {
   }
 
   Widget _buildTodoCard(BuildContext context, String task, int index) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -124,7 +127,7 @@ class TodoScreen extends StatelessWidget {
           Expanded(
             child: Text(
               task,
-              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: Colors.black87),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500, color: theme.textTheme.bodyMedium?.color),
             ),
           ),
           IconButton(

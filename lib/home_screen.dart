@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'Bloc/Theme/theme_bloc.dart';
+import 'Bloc/Theme/theme_event.dart';
+import 'Bloc/Theme/theme_state.dart';
 import 'Counter/counter_screen.dart';
 import 'ImagePicker/image_picker.dart';
 import 'Switch/switch_screen.dart';
@@ -16,8 +20,9 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Learning Roadmap',
@@ -26,6 +31,24 @@ class _HomeScreenState extends State<HomeScreen> {
         elevation: 0,
         backgroundColor: Colors.blueAccent,
         centerTitle: true,
+        actions: [
+          BlocBuilder<ThemeBloc, ThemeState>(
+            builder: (context, state) {
+              return IconButton(
+                onPressed: () {
+                  context.read<ThemeBloc>().add(ToggleTheme());
+                },
+                icon: FaIcon(
+                  state.themeMode == ThemeMode.light
+                      ? FontAwesomeIcons.moon
+                      : FontAwesomeIcons.sun,
+                  color: Colors.white,
+                  size: 20,
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -260,10 +283,11 @@ class _FeatureCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLocked = color == Colors.grey;
+    final theme = Theme.of(context);
 
     return Container(
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(16),
         boxShadow: [
           BoxShadow(
@@ -321,7 +345,7 @@ class _FeatureCard extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 16,
                               fontWeight: FontWeight.bold,
-                              color: isLocked ? Colors.grey : Colors.black87,
+                              color: isLocked ? Colors.grey : theme.textTheme.titleMedium?.color,
                             ),
                           ),
                           const SizedBox(width: 8),
@@ -337,7 +361,7 @@ class _FeatureCard extends StatelessWidget {
                       ),
                       Text(
                         description,
-                        style: TextStyle(fontSize: 12, color: Colors.grey[500]),
+                        style: TextStyle(fontSize: 12, color: theme.textTheme.bodySmall?.color?.withAlpha(150)),
                       ),
                     ],
                   ),

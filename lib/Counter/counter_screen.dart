@@ -12,8 +12,9 @@ class CounterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text(
           'Counter Master',
@@ -32,7 +33,7 @@ class CounterScreen extends StatelessWidget {
             Container(
               padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 40),
               decoration: BoxDecoration(
-                color: Colors.white,
+                color: theme.cardColor,
                 borderRadius: BorderRadius.circular(30),
                 boxShadow: [
                   BoxShadow(

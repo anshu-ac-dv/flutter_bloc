@@ -10,14 +10,15 @@ class UserScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Scaffold(
-      backgroundColor: Colors.grey[50],
+      backgroundColor: theme.scaffoldBackgroundColor,
       appBar: AppBar(
         title: const Text('Vault Registry', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Colors.white,
-        foregroundColor: Colors.black87,
+        backgroundColor: theme.appBarTheme.backgroundColor ?? theme.colorScheme.surface,
+        foregroundColor: theme.appBarTheme.foregroundColor ?? theme.colorScheme.onSurface,
       ),
       body: BlocBuilder<UserBloc, UserState>(
         builder: (context, state) {
@@ -33,7 +34,7 @@ class UserScreen extends StatelessWidget {
                 itemCount: state.users.length,
                 itemBuilder: (context, index) {
                   final user = state.users[index];
-                  return _buildUserCard(user);
+                  return _buildUserCard(context, user);
                 },
               ),
             );
@@ -51,11 +52,12 @@ class UserScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildUserCard(user) {
+  Widget _buildUserCard(BuildContext context, user) {
+    final theme = Theme.of(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 16),
       decoration: BoxDecoration(
-        color: Colors.white,
+        color: theme.cardColor,
         borderRadius: BorderRadius.circular(20),
         boxShadow: [
           BoxShadow(
@@ -80,11 +82,11 @@ class UserScreen extends StatelessWidget {
         ),
         title: Text(
           user.name,
-          style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16, color: theme.textTheme.titleMedium?.color),
         ),
         subtitle: Text(
           user.email,
-          style: TextStyle(color: Colors.grey[600], fontSize: 13),
+          style: TextStyle(color: theme.textTheme.bodySmall?.color?.withAlpha(150), fontSize: 13),
         ),
         trailing: const Icon(Icons.chevron_right, color: Colors.grey),
       ),

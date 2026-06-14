@@ -1,6 +1,5 @@
 // bloc/user_state.dart
 import 'package:equatable/equatable.dart';
-
 import '../../Models/user_model.dart';
 
 abstract class UserState extends Equatable {
@@ -9,7 +8,6 @@ abstract class UserState extends Equatable {
 }
 
 class UserInitial extends UserState {}
-
 class UserLoading extends UserState {}
 
 class UserLoaded extends UserState {
